@@ -37,6 +37,11 @@ public class Entity : MonoBehaviour
 
     }
 
+    public virtual void EntityDealth()
+    {
+
+    }
+
     public void Update()
     {
         HandleCollisionDetection();

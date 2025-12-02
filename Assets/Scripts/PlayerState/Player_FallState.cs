@@ -13,6 +13,7 @@ public class Player_FallState : Player_AirState
         if(player.groundDetected)
         {
             stateMachine.ChangeState(player.idleState);
+            player.HandleCollider();
         }
 
     }

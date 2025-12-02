@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4738026722540635087}
   - component: {fileID: 4130334451725743749}
   - component: {fileID: 2449387694275370858}
+  - component: {fileID: 8246623547597536351}
   m_Layer: 0
   m_Name: Animator
   m_TagString: Untagged
@@ -110,6 +111,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8246623547597536351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979597015168704914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad523831ef33b94989fa2ad0749bb49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3132532970682399407
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,8 +321,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10, y: 0}
+  m_AnchoredPosition: {x: -4.9599915, y: 0}
+  m_SizeDelta: {x: 0.07, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6999659222035671394
 CanvasRenderer:
@@ -477,6 +490,7 @@ GameObject:
   - component: {fileID: 5992699298826295652}
   - component: {fileID: 6191780524963137036}
   - component: {fileID: 9004307220068827766}
+  - component: {fileID: 2131251443995844189}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -501,6 +515,7 @@ Transform:
   - {fileID: 2984971019388350811}
   - {fileID: 7516313924746550090}
   - {fileID: 5256962463060014238}
+  - {fileID: 4875233903449765663}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4629040057012597359
@@ -525,6 +540,7 @@ MonoBehaviour:
   primaryWallCheck: {fileID: 2984971019388350811}
   secondaryWallCheck: {fileID: 7516313924746550090}
   moveSpeed: 5
+  crouchWalkSpeed: 3
   jumpForce: 7
   wallJumpForce: {x: 0, y: 0}
   inAirMoveMultiplier: 0.7
@@ -607,6 +623,24 @@ MonoBehaviour:
   currentHp: 0
   maxHp: 100
   isDead: 0
+--- !u!114 &2131251443995844189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6639158982048265052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48d48fc0701293a4ba0479e1166ad63d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetCollider: []
+  targetCheck: {fileID: 4875233903449765663}
+  targetRadius: 0.85
+  whatIsTarget:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &6679661697429829217
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,6 +703,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3851676346994779231}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8267914839006749284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4875233903449765663}
+  m_Layer: 9
+  m_Name: TargetCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4875233903449765663
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8267914839006749284}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5, y: -0.17, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3851676346994779231}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8634469856211561551
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,6 +767,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: 0.12000275, y: 0}
-  m_SizeDelta: {x: -9.77, y: 0}
+  m_AnchoredPosition: {x: 4.93, y: 0}
+  m_SizeDelta: {x: -0.15, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

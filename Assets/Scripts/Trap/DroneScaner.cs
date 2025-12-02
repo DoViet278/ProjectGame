@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class DroneScaner : MonoBehaviour
 {
-    private float scanDistance = 5f;
+    private float scanDistance = 20f;
     private float scanAngle = 30f;
     private float scanTime = 4f;
     private Color normalColor = Color.yellow;

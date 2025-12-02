@@ -15,14 +15,21 @@ public class Player_GroundedState : PlayerState
             stateMachine.ChangeState(player.fallState);
         }
 
-        if (input.Player.Jump.WasPressedThisFrame())
+        if (input.Player.Jump.WasPressedThisFrame() && stateMachine.currentState != player.crouchState && stateMachine.currentState != player.crouchWalkState)
         {
             stateMachine.ChangeState(player.jumpState);  
         }
 
-        if (input.Player.Attack.WasPressedThisFrame())
+        if (input.Player.Attack.WasPressedThisFrame() && stateMachine.currentState != player.crouchState && stateMachine.currentState != player.crouchWalkState)
         {
             stateMachine.ChangeState(player.atkState);
         }
+
+        if (input.Player.Crouch.WasPressedThisFrame() && stateMachine.currentState != player.crouchState)
+        {
+            stateMachine.ChangeState(player.crouchState);
+            player.HandleCollider();
+        }
+
     }
 }

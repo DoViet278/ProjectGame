@@ -8,7 +8,7 @@ public class EntityHealth : MonoBehaviour
 
     [SerializeField] protected float currentHp;
     [SerializeField] protected float maxHp = 100;
-    [SerializeField] protected bool isDead;
+    [SerializeField] public bool isDead;
 
     private void Awake()
     {
@@ -35,9 +35,14 @@ public class EntityHealth : MonoBehaviour
     public void Die()
     {
         isDead = true;
+        entity?.EntityDealth();
     }
 
-    private void UpdateHealthBar() => healthBar.value = currentHp/maxHp;
+    private void UpdateHealthBar()
+    {
+        if (healthBar != null)
+            healthBar.value = currentHp / maxHp;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -45,11 +50,19 @@ public class EntityHealth : MonoBehaviour
         {
             TakeDamage(10f);
         }
-        else if (collision.CompareTag("Stone"))
+        else if(collision.CompareTag("Laser"))
+        {
+            TakeDamage(10f);
+        }
+        else if (collision.CompareTag("Saw"))
         {
             TakeDamage(15f);
         }
-        else if(collision.CompareTag("Laser"))
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Stone"))
         {
             TakeDamage(10f);
         }

@@ -22,11 +22,6 @@ public class UiInventoryInGame : MonoBehaviour
                 slots[i].sprite = Resources.Load<Sprite>(items[i].iconPath);
                 slots[i].color = Color.white;
             }
-            else
-            {
-                slots[i].sprite = null;
-                slots[i].color = new Color(1, 1, 1, 0);
-            }
         }
     }
 }
