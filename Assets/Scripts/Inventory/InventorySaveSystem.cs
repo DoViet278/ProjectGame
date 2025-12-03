@@ -6,7 +6,7 @@ public static class InventorySaveSystem
 {
     static string path => Application.persistentDataPath + "/inventory.json";
 
-    public static void Save(List<ItemData> items)
+    public static void Save(List<ItemStack> items)
     {
         InventorySaveData data = new InventorySaveData();
         data.items = items;
@@ -15,10 +15,10 @@ public static class InventorySaveSystem
         File.WriteAllText(path, json);
     }
 
-    public static List<ItemData> Load()
+    public static List<ItemStack> Load()
     {
         if (!File.Exists(path))
-            return new List<ItemData>();
+            return new List<ItemStack>();
 
         string json = File.ReadAllText(path);
         InventorySaveData data = JsonUtility.FromJson<InventorySaveData>(json);

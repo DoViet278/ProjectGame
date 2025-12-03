@@ -15,6 +15,7 @@ public class Player : Entity
     public Player_AtkState atkState { get; private set; }
     public Player_DeadState deadState { get; private set; }
 
+    public GameObject losePanel;
     [Header("Movement details")]
     public float moveSpeed;
     public float crouchWalkSpeed;
@@ -28,7 +29,7 @@ public class Player : Entity
     private CapsuleCollider2D col;
     private Vector2 offsetCollider;
     private Vector2 sizeCollider;
-
+    
     protected override void Awake()
     {
         base.Awake();
@@ -58,6 +59,7 @@ public class Player : Entity
     {
         base.EntityDealth();
         stateMachine.ChangeState(deadState);
+        losePanel.gameObject.SetActive(true);
     }
 
     private void OnEnable()

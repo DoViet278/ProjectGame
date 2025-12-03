@@ -29,7 +29,7 @@ public class EntityHealth : MonoBehaviour
     {
         currentHp -= damage;    
         UpdateHealthBar();
-        if(currentHp < 0)  Die();
+        if(currentHp <= 0)  Die();
     }
 
     public void Die()

@@ -4,5 +4,5 @@ using UnityEngine;
 [System.Serializable]
 public class InventorySaveData
 {
-    public List<ItemData> items = new List<ItemData>();
+    public List<ItemStack> items = new List<ItemStack>();
 }

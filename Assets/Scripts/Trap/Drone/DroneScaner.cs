@@ -6,7 +6,7 @@ public class DroneScaner : MonoBehaviour
 {
     private float scanDistance = 20f;
     private float scanAngle = 30f;
-    private float scanTime = 4f;
+    private float scanTime = 2f;
     private Color normalColor = Color.yellow;
     private Color alertColor = Color.red;
 
@@ -36,7 +36,7 @@ public class DroneScaner : MonoBehaviour
         Color c = playerDetected ? alertColor : normalColor;
         Gizmos.color = c;
 
-        Vector3 forward = Quaternion.Euler(45f, 0, 0) * Vector3.down; 
+        Vector3 forward = Vector3.down; 
         float halfAngle = scanAngle * 0.5f;
 
         int segments = 30;
@@ -49,7 +49,7 @@ public class DroneScaner : MonoBehaviour
         for (int i = 1; i <= segments; i++)
         {
             Vector3 newDir = Quaternion.Euler(0, 0, -halfAngle + step * i) * forward;
-            Vector3 newPoint = transform.position + newDir * scanDistance * 2;
+            Vector3 newPoint = transform.position + newDir * scanDistance ;
 
             Gizmos.DrawLine(transform.position, newPoint);
             Gizmos.DrawLine(oldPoint, newPoint);
@@ -66,7 +66,7 @@ public class DroneScaner : MonoBehaviour
         float dist = dir.magnitude;
         if (dist > scanDistance) return false;
 
-        Vector3 forward = Quaternion.Euler(45f, 0, 0) * Vector3.down;
+        Vector3 forward = Vector3.down;
         float angle = Vector3.Angle(forward, dir);
 
         return angle < scanAngle * 0.5f;

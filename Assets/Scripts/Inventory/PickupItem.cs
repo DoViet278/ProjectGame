@@ -1,3 +1,4 @@
+using NUnit.Framework.Interfaces;
 using UnityEngine;
 
 public class PickupItem : MonoBehaviour
@@ -8,8 +9,17 @@ public class PickupItem : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            InventoryRuntime.Instance.AddItem(item);
-            Destroy(gameObject);
+            bool picked = HotbarManager.Instance.AddItemToHotbar(item,1);
+
+            if (picked)
+            {
+                Destroy(gameObject);
+                UiInventoryInGame.Instance.Refresh(HotbarManager.Instance.hotbar);
+            }
+            else
+            {
+                
+            }
         }
     }
 }

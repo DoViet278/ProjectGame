@@ -3,8 +3,8 @@ using UnityEngine;
 public class DroneShooter : MonoBehaviour
 {
     [SerializeField] private GameObject bulletPrefab;
-    private float bulletSpeed = 10f;
-    private float shootCooldown = 2f;
+    private float bulletSpeed = 15f;
+    private float shootCooldown = 1f;
 
     private float shootTimer;
 
