@@ -7,40 +7,34 @@ public class MenuSceneManager : MonoBehaviour
 {
     [SerializeField] private Button playBtn;
     [SerializeField] private Button settingBtn;
-    [SerializeField] private Button inventoryBtn;
-    [SerializeField] private TextMeshProUGUI txtCoin;
-    [SerializeField] private GameObject invetoryUI;
-    [SerializeField] private GameObject selectItemPopup;
+    [SerializeField] private GameObject selectLevelPopup;
+    [SerializeField] private GameObject settings;
     private void OnEnable()
     {
         AddListeners();
     }
 
-    private void Update()
-    {
-       // txtCoin.text = $"{DataManager.CoinInGame}";
-    }
 
     private void AddListeners()
     {
         playBtn.onClick.AddListener(onClickPlay);
-        inventoryBtn.onClick.AddListener(onClickShowInventory);
+        settingBtn.onClick.AddListener(onClickSetting);
     }
 
     private void RemoveListeners()
     {
         playBtn.onClick.RemoveListener(onClickPlay);
-        inventoryBtn.onClick.RemoveListener(onClickShowInventory);
+        settingBtn.onClick.RemoveListener(onClickSetting);
     }
 
     private void onClickPlay()
     {
-        selectItemPopup.SetActive(true);
+        selectLevelPopup.SetActive(true);
     }
 
-    private void onClickShowInventory()
+    private void onClickSetting()
     {
-        invetoryUI.SetActive(true);
+        settings.SetActive(true);
     }
     private void OnDisable()
     {
