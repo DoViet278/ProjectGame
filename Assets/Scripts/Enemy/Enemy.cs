@@ -10,16 +10,11 @@ public class Enemy : Entity
     public Enemy_DeadState deadState;
 
     [Header("Battle details")]
-    public float battleMoveSpeed = 3f;
+    public float battleMoveSpeed = 1.6f;
     public float atkDistance = 2;
     public float battleTimeDuration = 5;
     public float minRetreatDistance = 1;
     public Vector2 retreatVelocity;
-
-    //[Header("Stunned details")]
-    //public float stunnedDuration = 1;
-    //public Vector2 stunnedVelocity = new Vector2(7, 7);
-    //[SerializeField] protected bool canbeStunned;
 
     [Header("Movement details")]
     public float idleTime = 2;
@@ -33,7 +28,6 @@ public class Enemy : Entity
     [SerializeField] private float playerDistance;
     public Transform player { get; private set; } 
 
-    //public void EnableCounterWindow(bool enable) => canbeStunned = enable;
 
     public override void EntityDealth()
     {
@@ -68,7 +62,7 @@ public class Enemy : Entity
     {
         RaycastHit2D hit;
         hit = Physics2D.Raycast(playerCheckPos.position, Vector2.right * facingDir, playerDistance, whatIsPlayer | whatIsGround);
-        if(hit.collider == null || hit.collider.gameObject.layer != LayerMask.NameToLayer("Player"))
+        if(hit.collider == null || hit.collider.gameObject.layer != LayerMask.NameToLayer("Player") || GamePlayController.Instance.isInvisible)
         {
             return default;
         }

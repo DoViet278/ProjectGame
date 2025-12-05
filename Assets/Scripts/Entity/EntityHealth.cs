@@ -5,8 +5,9 @@ public class EntityHealth : MonoBehaviour
 {
     private Slider healthBar;
     private Entity entity;
+    private EntityVfx entityVfx;
 
-    [SerializeField] protected float currentHp;
+    public float currentHp;
     [SerializeField] protected float maxHp = 100;
     [SerializeField] public bool isDead;
 
@@ -14,6 +15,8 @@ public class EntityHealth : MonoBehaviour
     {
         entity = GetComponent<Entity>();
         healthBar = GetComponentInChildren<Slider>();
+        entityVfx = GetComponentInChildren<EntityVfx>();
+
         currentHp = maxHp; 
         UpdateHealthBar(); 
       
@@ -22,6 +25,7 @@ public class EntityHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         if (isDead) return;
+        entityVfx?.PlayOnDamageVfx();
         ReduceHp(damage);
     }
 
@@ -38,8 +42,9 @@ public class EntityHealth : MonoBehaviour
         entity?.EntityDealth();
     }
 
-    private void UpdateHealthBar()
+    public void UpdateHealthBar()
     {
+        if (currentHp > maxHp) currentHp = maxHp;
         if (healthBar != null)
             healthBar.value = currentHp / maxHp;
     }

@@ -10,6 +10,15 @@ public class LevelPlay : MonoBehaviour
     private void Awake()
     {
         index = gameObject.transform.GetSiblingIndex();
+
+        if(index < DataManager.LevelPlay)
+        {
+            gameObject.transform.GetChild(1).gameObject.SetActive(false);
+        }
+        else
+        {
+            gameObject.transform.GetChild(1).gameObject.SetActive(true);
+        }
     }
 
     private void OnEnable()

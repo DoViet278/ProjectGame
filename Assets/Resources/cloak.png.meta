@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5dd1d2f20b95278469c965c2cc9f0fcd
+guid: ba3b0e835f995ac498876c61c65d81ea
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -197870248571839034
-    second: cloak-removebg-preview_0
+      213: 190119825491149168
+    second: cloak 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cloak-removebg-preview_0
+      name: cloak 1_0
       rect:
         serializedVersion: 2
-        x: 145
-        y: 76
-        width: 213
-        height: 339
+        x: 22
+        y: 16
+        width: 110
+        height: 127
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6cdd14aae06014df0800000000000000
-      internalID: -197870248571839034
+      spriteID: 071c82759f073a200800000000000000
+      internalID: 190119825491149168
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      cloak-removebg-preview_0: -197870248571839034
+      cloak 1_0: 190119825491149168
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
