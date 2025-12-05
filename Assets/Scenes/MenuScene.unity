@@ -6709,7 +6709,9 @@ MonoBehaviour:
   txtCoin: {fileID: 1777387658}
   invetoryUI: {fileID: 1935853767}
   selectItemPopup: {fileID: 79271557}
+  selectLevelPopup: {fileID: 829958673}
   settingsPopup: {fileID: 797216778}
+  settings: {fileID: 0}
   menuButtonsContainer: {fileID: 1473834094}
 --- !u!1 &1550112466
 GameObject:
