@@ -74,11 +74,6 @@ public class Player : Entity
         input.Disable();
     }
 
-    public void CallAnimationTrigger()
-    {
-        stateMachine.currentState.CallAnimationTrigger();   
-    }
-
     public void HandleCollider()
     {
         if(stateMachine.currentState == crouchState || stateMachine.currentState == crouchWalkState)

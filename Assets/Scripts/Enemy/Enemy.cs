@@ -16,10 +16,10 @@ public class Enemy : Entity
     public float minRetreatDistance = 1;
     public Vector2 retreatVelocity;
 
-    [Header("Stunned details")]
-    public float stunnedDuration = 1;
-    public Vector2 stunnedVelocity = new Vector2(7, 7);
-    [SerializeField] protected bool canbeStunned;
+    //[Header("Stunned details")]
+    //public float stunnedDuration = 1;
+    //public Vector2 stunnedVelocity = new Vector2(7, 7);
+    //[SerializeField] protected bool canbeStunned;
 
     [Header("Movement details")]
     public float idleTime = 2;
@@ -33,7 +33,7 @@ public class Enemy : Entity
     [SerializeField] private float playerDistance;
     public Transform player { get; private set; } 
 
-    public void EnableCounterWindow(bool enable) => canbeStunned = enable;
+    //public void EnableCounterWindow(bool enable) => canbeStunned = enable;
 
     public override void EntityDealth()
     {
@@ -81,6 +81,8 @@ public class Enemy : Entity
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(playerCheckPos.position , new Vector3(playerCheckPos.position.x + (facingDir * playerDistance), playerCheckPos.position.y, playerCheckPos.position.z));
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(playerCheckPos.position, new Vector3(playerCheckPos.position.x + (facingDir * atkDistance), playerCheckPos.position.y, playerCheckPos.position.z));
     }
 
     private void OnEnable()
