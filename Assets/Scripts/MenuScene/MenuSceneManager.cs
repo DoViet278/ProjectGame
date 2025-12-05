@@ -11,7 +11,9 @@ public class MenuSceneManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI txtCoin;
     [SerializeField] private GameObject invetoryUI;
     [SerializeField] private GameObject selectItemPopup;
+    [SerializeField] private GameObject selectLevelPopup;
     [SerializeField] private GameObject settingsPopup;
+    [SerializeField] private GameObject settings;
     [SerializeField] private GameObject menuButtonsContainer; // Container chứa 3 nút menu
     
     public static MenuSceneManager Instance { get; private set; }
@@ -24,11 +26,6 @@ public class MenuSceneManager : MonoBehaviour
     private void OnEnable()
     {
         AddListeners();
-    }
-
-    private void Update()
-    {
-       // txtCoin.text = $"{DataManager.CoinInGame}";
     }
 
     private void AddListeners()
@@ -47,35 +44,39 @@ public class MenuSceneManager : MonoBehaviour
 
     private void onClickPlay()
     {
-        selectItemPopup.SetActive(true);
+        if (selectLevelPopup != null)
+            selectLevelPopup.SetActive(true);
     }
 
     private void onClickShowInventory()
     {
-        invetoryUI.SetActive(true);
+        if (invetoryUI != null)
+            invetoryUI.SetActive(true);
     }
 
     private void onClickSetting()
     {
-        if(settingsPopup != null) 
+        // Support cả 2 version: settingsPopup (mới) và settings (cũ)
+        if (settingsPopup != null) 
         {
             settingsPopup.SetActive(true);
-            if(menuButtonsContainer != null) menuButtonsContainer.SetActive(false);
+            if (menuButtonsContainer != null) 
+                menuButtonsContainer.SetActive(false);
+        }
+        else if (settings != null)
+        {
+            settings.SetActive(true);
         }
     }
     
     public void ShowMenuButtons()
     {
-        if(menuButtonsContainer != null) menuButtonsContainer.SetActive(true);
+        if (menuButtonsContainer != null) 
+            menuButtonsContainer.SetActive(true);
     }
     
     private void OnDisable()
     {
         RemoveListeners();
     }
-
-
-
-
-
 }

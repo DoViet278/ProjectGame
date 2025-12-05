@@ -1,18 +1,18 @@
 using UnityEngine;
 
-public class Player_AnimationTrigger : MonoBehaviour
+public class Entity_AnimationTrigger : MonoBehaviour
 {
-    private Player player;
+    private Entity entity;
     private EntityCombat entityCombat;
     private void Awake()
     {
-        player = GetComponentInParent<Player>();
+        entity = GetComponentInParent<Entity>();
         entityCombat = GetComponentInParent<EntityCombat>();    
     }
 
     public void CurrentStateTrigger()
     {
-        player.CallAnimationTrigger();
+        entity.CallAnimationTrigger();
     }
 
     public void PerformAtk()

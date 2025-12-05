@@ -7,8 +7,9 @@ public abstract class EntityState
 
     protected Animator anim;
     protected Rigidbody2D rb;
-    protected bool triggerCalled;
 
+    protected bool triggerCalled;
+    protected float stateTimer;
     public EntityState(StateMachine stateMachine, string animBoolName)
     {
         this.stateMachine = stateMachine;
@@ -23,6 +24,7 @@ public abstract class EntityState
 
     public virtual void Update()
     {
+        stateTimer -= Time.deltaTime;
         UpdateAnimationParameter();
     }
 
