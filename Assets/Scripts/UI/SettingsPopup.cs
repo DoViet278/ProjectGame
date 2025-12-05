@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SettingsPopup : MonoBehaviour
 {
@@ -15,157 +16,85 @@ public class SettingsPopup : MonoBehaviour
     [SerializeField] private Sprite musicOffSprite;
     [SerializeField] private Sprite soundOnSprite;
     [SerializeField] private Sprite soundOffSprite;
-
-    private void OnEnable()
-    {
-        Debug.Log("SettingsPopup OnEnable() được gọi!");
-        Debug.Log($"musicBtn = {(musicBtn != null ? "OK" : "NULL")}");
-        Debug.Log($"soundBtn = {(soundBtn != null ? "OK" : "NULL")}");
-        Debug.Log($"closeBtn = {(closeBtn != null ? "OK" : "NULL")}");
-        
-        UpdateUI();
-        
-        if (musicBtn != null)
-        {
-            musicBtn.onClick.AddListener(OnMusicClick);
-            Debug.Log("Đã thêm listener cho musicBtn");
-        }
-        
-        if (soundBtn != null)
-        {
-            soundBtn.onClick.AddListener(OnSoundClick);
-            Debug.Log("Đã thêm listener cho soundBtn");
-        }
-        
-        if (closeBtn != null)
-        {
-            closeBtn.onClick.AddListener(OnCloseClick);
-            Debug.Log("Đã thêm listener cho closeBtn");
-        }
-    }
     
+    [Header("Music Selector")]
+    [SerializeField] private TMP_Dropdown musicDropdown;
+
     private void Start()
     {
-        Debug.Log("SettingsPopup Start() được gọi!");
+        Debug.Log("=== SettingsPopup Start() ===");
         
-        // Tắt raycastTarget cho tất cả children images của musicBtn và soundBtn
+        // Tắt Raycast Target
+        if (musicIcon != null) musicIcon.raycastTarget = false;
+        if (soundIcon != null) soundIcon.raycastTarget = false;
+        
+        // Add listeners
         if (musicBtn != null)
         {
-            Debug.Log($"musicBtn GameObject name: {musicBtn.gameObject.name}");
-            Debug.Log($"musicBtn có {musicBtn.transform.childCount} child objects");
-            
-            // Duyệt qua tất cả children và tắt raycastTarget
-            for (int i = 0; i < musicBtn.transform.childCount; i++)
-            {
-                Transform child = musicBtn.transform.GetChild(i);
-                Debug.Log($"  Child {i}: {child.name}");
-                
-                UnityEngine.UI.Image img = child.GetComponent<UnityEngine.UI.Image>();
-                if (img != null)
-                {
-                    Debug.Log($"    -> Có Image component, raycastTarget = {img.raycastTarget}");
-                    img.raycastTarget = false; // TẮT RAYCAST!
-                    Debug.Log($"    -> Đã tắt raycastTarget!");
-                }
-            }
+            musicBtn.onClick.RemoveAllListeners();
+            musicBtn.onClick.AddListener(OnMusicClick);
+            Debug.Log("Added OnMusicClick listener to " + musicBtn.gameObject.name);
         }
         
         if (soundBtn != null)
         {
-            Debug.Log($"soundBtn GameObject name: {soundBtn.gameObject.name}");
-            Debug.Log($"soundBtn có {soundBtn.transform.childCount} child objects");
-            
-            for (int i = 0; i < soundBtn.transform.childCount; i++)
-            {
-                Transform child = soundBtn.transform.GetChild(i);
-                Debug.Log($"  Child {i}: {child.name}");
-                
-                UnityEngine.UI.Image img = child.GetComponent<UnityEngine.UI.Image>();
-                if (img != null)
-                {
-                    Debug.Log($"    -> Có Image component, raycastTarget = {img.raycastTarget}");
-                    img.raycastTarget = false; // TẮT RAYCAST!
-                    Debug.Log($"    -> Đã tắt raycastTarget!");
-                }
-            }
+            soundBtn.onClick.RemoveAllListeners();
+            soundBtn.onClick.AddListener(OnSoundClick);
+            Debug.Log("Added OnSoundClick listener to " + soundBtn.gameObject.name);
+        }
+        
+        // Add closeBtn listener
+        if (closeBtn != null)
+        {
+            closeBtn.onClick.RemoveAllListeners();
+            closeBtn.onClick.AddListener(OnCloseClick);
+        }
+        
+        // Setup music dropdown
+        if (musicDropdown != null)
+        {
+            PopulateMusicDropdown();
+            musicDropdown.onValueChanged.AddListener(OnMusicDropdownChanged);
         }
         
         // Tắt Raycast Target của icons để chúng không chặn click vào buttons
-        if (musicIcon != null)
-        {
-            musicIcon.raycastTarget = false;
-            Debug.Log("Đã tắt raycastTarget cho musicIcon");
-        }
-        
-        if (soundIcon != null)
-        {
-            soundIcon.raycastTarget = false;
-            Debug.Log("Đã tắt raycastTarget cho soundIcon");
-        }
-        
-        // Test xem button có hoạt động không bằng cách thêm một test listener
-        if (musicBtn != null)
-        {
-            Debug.Log($"musicBtn.interactable = {musicBtn.interactable}");
-            Debug.Log($"musicBtn.gameObject.activeInHierarchy = {musicBtn.gameObject.activeInHierarchy}");
-            
-            // Thêm một test listener đơn giản
-            musicBtn.onClick.AddListener(() => {
-                Debug.Log("TEST: musicBtn được click!");
-            });
-        }
-        
-        if (soundBtn != null)
-        {
-            soundBtn.onClick.AddListener(() => {
-                Debug.Log("TEST: soundBtn được click!");
-            });
-        }
-        
-        if (closeBtn != null)
-        {
-            closeBtn.onClick.AddListener(() => {
-                Debug.Log("TEST: closeBtn được click!");
-            });
-        }
     }
-
-    private void OnDisable()
+    
+    private void OnEnable()
     {
-        musicBtn.onClick.RemoveListener(OnMusicClick);
-        soundBtn.onClick.RemoveListener(OnSoundClick);
-        closeBtn.onClick.RemoveListener(OnCloseClick);
+        UpdateUI();
+        UpdateMusicDropdown(); // Update dropdown to show current track
     }
 
     private void OnMusicClick()
     {
-        Debug.Log("OnMusicClick() được gọi!");
+        Debug.Log("!!! OnMusicClick() CALLED !!!");
         if (AudioManager.Instance != null)
         {
-            Debug.Log($"Trước khi toggle: IsMusicOn = {AudioManager.Instance.IsMusicOn}");
+            Debug.Log($"Before toggle: IsMusicOn = {AudioManager.Instance.IsMusicOn}");
             AudioManager.Instance.ToggleMusic();
-            Debug.Log($"Sau khi toggle: IsMusicOn = {AudioManager.Instance.IsMusicOn}");
+            Debug.Log($"After toggle: IsMusicOn = {AudioManager.Instance.IsMusicOn}");
             UpdateUI();
         }
         else
         {
-            Debug.LogError("AudioManager.Instance is null! Make sure AudioManager exists in the scene.");
+            Debug.LogError("AudioManager.Instance is null!");
         }
     }
 
     private void OnSoundClick()
     {
-        Debug.Log("OnSoundClick() được gọi!");
+        Debug.Log("!!! OnSoundClick() CALLED !!!");
         if (AudioManager.Instance != null)
         {
-            Debug.Log($"Trước khi toggle: IsSoundOn = {AudioManager.Instance.IsSoundOn}");
+            Debug.Log($"Before toggle: IsSoundOn = {AudioManager.Instance.IsSoundOn}");
             AudioManager.Instance.ToggleSound();
-            Debug.Log($"Sau khi toggle: IsSoundOn = {AudioManager.Instance.IsSoundOn}");
+            Debug.Log($"After toggle: IsSoundOn = {AudioManager.Instance.IsSoundOn}");
             UpdateUI();
         }
         else
         {
-            Debug.LogError("AudioManager.Instance is null! Make sure AudioManager exists in the scene.");
+            Debug.LogError("AudioManager.Instance is null!");
         }
     }
 
@@ -192,7 +121,6 @@ public class SettingsPopup : MonoBehaviour
             if (musicOnSprite != null && musicOffSprite != null)
                 musicIcon.sprite = isMusicOn ? musicOnSprite : musicOffSprite;
             
-            // Luôn thay đổi màu sắc để dễ nhận biết: Sáng (Bật) - Tối (Tắt)
             musicIcon.color = isMusicOn ? Color.white : Color.gray;
         }
 
@@ -201,8 +129,34 @@ public class SettingsPopup : MonoBehaviour
             if (soundOnSprite != null && soundOffSprite != null)
                 soundIcon.sprite = isSoundOn ? soundOnSprite : soundOffSprite;
             
-            // Luôn thay đổi màu sắc
             soundIcon.color = isSoundOn ? Color.white : Color.gray;
+        }
+    }
+    
+    // Music Dropdown Methods
+    private void PopulateMusicDropdown()
+    {
+        if (musicDropdown == null || AudioManager.Instance == null) return;
+        
+        musicDropdown.ClearOptions();
+        string[] musicNames = AudioManager.Instance.GetMusicClipNames();
+        musicDropdown.AddOptions(new System.Collections.Generic.List<string>(musicNames));
+    }
+    
+    private void UpdateMusicDropdown()
+    {
+        if (musicDropdown == null || AudioManager.Instance == null) return;
+        
+        int currentIndex = AudioManager.Instance.GetCurrentMusicIndex();
+        musicDropdown.SetValueWithoutNotify(currentIndex);
+    }
+    
+    private void OnMusicDropdownChanged(int index)
+    {
+        if (AudioManager.Instance != null)
+        {
+            Debug.Log($"Dropdown changed to index {index}");
+            AudioManager.Instance.PlayMusicByIndex(index);
         }
     }
 }
