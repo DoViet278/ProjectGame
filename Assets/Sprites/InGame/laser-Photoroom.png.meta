@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      laser-Photoroom_0: -622544596877113901
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
