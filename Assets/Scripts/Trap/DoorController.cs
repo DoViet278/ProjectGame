@@ -4,7 +4,7 @@ public class DoorController : MonoBehaviour
 {
     public Transform door;
     public Transform player;   
-    public float openDistance = 2f;
+    public float openDistance = 10f;
     public float detectDistance = 1.5f; 
     public float speed = 2f;
 

@@ -20,9 +20,15 @@ public static class DataManager
         set => PrefManager.SetString(KeyManager.KeyPlayerName, value);  
     }
 
-    public static int LevelPlay
+    public static int LevelPlayUnlocked
     {
-        get => PrefManager.GetInt(KeyManager.KeyLevelPlay, 1);
-        set => PrefManager.SetInt(KeyManager.KeyLevelPlay, value);  
+        get => PrefManager.GetInt(KeyManager.KeyLevelPlayUnlocked, 1);
+        set => PrefManager.SetInt(KeyManager.KeyLevelPlayUnlocked, value);  
+    }
+
+    public static int LevelPlaying
+    {
+        get => PrefManager.GetInt(KeyManager.KeyLevelPlaying, 1);
+        set => PrefManager.SetInt(KeyManager.KeyLevelPlaying, value);
     }
 }

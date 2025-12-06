@@ -8,5 +8,7 @@ public static class KeyManager
 
     public const string KeyPlayerName = "key_player_name";
 
-    public const string KeyLevelPlay = "key_level_play";
+    public const string KeyLevelPlayUnlocked = "key_level_play_unlocked";
+
+    public const string KeyLevelPlaying = "key_level_playing";
 }

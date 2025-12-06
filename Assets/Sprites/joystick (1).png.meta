@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: bf81a0a1ee7d0e74380d9f5099fa79f2
+guid: 651d3e25173b1d3478462855e41b39d8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3619066089281625183
-    second: item sheet 5_0
+      213: -5013720066603654077
+    second: joystick (1)_0
+  - first:
+      213: -4438423701805069989
+    second: joystick (1)_1
+  - first:
+      213: 8617958603115599320
+    second: joystick (1)_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,12 +52,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 36
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +81,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,23 +106,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: item sheet 5_0
+      name: joystick (1)_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1
-        width: 134
-        height: 144
+        x: 19
+        y: 69
+        width: 152
+        height: 402
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1a3e4b1019e76cdc0800000000000000
-      internalID: -3619066089281625183
+      spriteID: 34467dac920bb6ab0800000000000000
+      internalID: -5013720066603654077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: joystick (1)_1
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 69
+        width: 152
+        height: 252
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b590c33b82d8762c0800000000000000
+      internalID: -4438423701805069989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: joystick (1)_2
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 69
+        width: 152
+        height: 392
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d51abb80b3299770800000000000000
+      internalID: 8617958603115599320
       vertices: []
       indices: 
       edges: []
@@ -125,7 +175,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: f453dff600e54ec418e0d00458dcde4d
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +185,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      item sheet 5_0: -3619066089281625183
+      joystick (1)_0: -5013720066603654077
+      joystick (1)_1: -4438423701805069989
+      joystick (1)_2: 8617958603115599320
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

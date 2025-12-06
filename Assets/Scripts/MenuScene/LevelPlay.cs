@@ -11,7 +11,7 @@ public class LevelPlay : MonoBehaviour
     {
         index = gameObject.transform.GetSiblingIndex();
 
-        if(index < DataManager.LevelPlay)
+        if(index < DataManager.LevelPlayUnlocked)
         {
             gameObject.transform.GetChild(1).gameObject.SetActive(false);
         }
@@ -42,6 +42,7 @@ public class LevelPlay : MonoBehaviour
 
     public void OnClickLevel()
     {
-        SceneManager.LoadScene(index+3);
+        DataManager.LevelPlaying = index + 1;
+        SceneManager.LoadScene(DataManager.LevelPlaying + 2);
     }
 }

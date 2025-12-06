@@ -59,5 +59,6 @@ public class PopupPlayerName : MonoBehaviour
     private void OnDisable()
     {
         RemoveListeners();  
+        DataManager.IsFirstPlayTime = false;    
     }
 }

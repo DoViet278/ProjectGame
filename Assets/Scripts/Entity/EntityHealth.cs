@@ -63,6 +63,10 @@ public class EntityHealth : MonoBehaviour
         {
             TakeDamage(15f);
         }
+        else if (collision.CompareTag("Bullet"))
+        {
+            TakeDamage(10f);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

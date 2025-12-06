@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public class StickController : MonoBehaviour
+public class OpenLock : MonoBehaviour
 {
+    [SerializeField] private GameObject stair;
+    [SerializeField] private GameObject goback;
     private Animator _animator;
     private bool isOpen = false;
     private void Awake()
@@ -13,12 +15,11 @@ public class StickController : MonoBehaviour
     {
         if (isOpen)
         {
-            Debug.LogError("Open");
             if (Input.GetKeyDown(KeyCode.E))
-            {
-                Debug.Log("open");
+
                 _animator.SetBool("open", true);
-            }
+            stair.SetActive(true);
+            goback.SetActive(true);
         }
     }
 

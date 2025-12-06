@@ -7,20 +7,24 @@ public class MenuSceneManager : MonoBehaviour
 {
     [SerializeField] private Button playBtn;
     [SerializeField] private Button settingBtn;
-    [SerializeField] private Button inventoryBtn;
-    [SerializeField] private TextMeshProUGUI txtCoin;
+    [SerializeField] private Button tutorialBtn;
     [SerializeField] private GameObject invetoryUI;
     [SerializeField] private GameObject selectItemPopup;
     [SerializeField] private GameObject selectLevelPopup;
     [SerializeField] private GameObject settingsPopup;
     [SerializeField] private GameObject settings;
     [SerializeField] private GameObject menuButtonsContainer; // Container chứa 3 nút menu
+    [SerializeField] private GameObject popupPlayerName;
     
     public static MenuSceneManager Instance { get; private set; }
     
     private void Awake()
     {
         Instance = this;
+        if (DataManager.IsFirstPlayTime)
+        {
+            popupPlayerName.SetActive(true);
+        }
     }
 
     private void OnEnable()
@@ -31,15 +35,15 @@ public class MenuSceneManager : MonoBehaviour
     private void AddListeners()
     {
         playBtn.onClick.AddListener(onClickPlay);
-        inventoryBtn.onClick.AddListener(onClickShowInventory);
         settingBtn.onClick.AddListener(onClickSetting);
+        tutorialBtn.onClick.AddListener(onClickTutorial);
     }
 
     private void RemoveListeners()
     {
         playBtn.onClick.RemoveListener(onClickPlay);
-        inventoryBtn.onClick.RemoveListener(onClickShowInventory);
         settingBtn.onClick.RemoveListener(onClickSetting);
+        tutorialBtn.onClick.RemoveListener(onClickTutorial);
     }
 
     private void onClickPlay()
@@ -47,16 +51,13 @@ public class MenuSceneManager : MonoBehaviour
         if (selectLevelPopup != null)
             selectLevelPopup.SetActive(true);
     }
-
-    private void onClickShowInventory()
+    private void onClickTutorial()
     {
-        if (invetoryUI != null)
-            invetoryUI.SetActive(true);
+        SceneManager.LoadScene("TutorialScene");
     }
 
     private void onClickSetting()
     {
-        // Support cả 2 version: settingsPopup (mới) và settings (cũ)
         if (settingsPopup != null) 
         {
             settingsPopup.SetActive(true);

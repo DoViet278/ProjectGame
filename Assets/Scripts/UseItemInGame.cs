@@ -38,6 +38,7 @@ public class UseItemInGame : MonoBehaviour
     {
         if(stack.item.id == "cloak")
         {
+            Debug.LogError("use cloak");
             GamePlayController.Instance.EnterToInvisible();
             StartCoroutine(InvisibleRoutine());
         }
