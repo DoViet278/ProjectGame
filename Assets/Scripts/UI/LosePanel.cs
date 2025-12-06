@@ -28,6 +28,7 @@ public class LosePanel : MonoBehaviour
     {
         SceneManager.LoadScene("MenuScene");
         gameObject.SetActive(false);
+        InventoryManager.Instance.ApplyHotbarResultToInventory();
     }
 
     private void RemoveListeners()

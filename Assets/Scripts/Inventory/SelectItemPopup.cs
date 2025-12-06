@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SelectItemPopup : MonoBehaviour
 {
     [SerializeField] private Button btnContinue;
+    [SerializeField] private Button btnBack;
     public Transform contentParent; 
     public GameObject itemButtonPrefab;
     private int selectedCount = 0;
@@ -20,19 +21,25 @@ public class SelectItemPopup : MonoBehaviour
     private void AddListeners()
     {
         btnContinue.onClick.AddListener(OnClickPlay);
+        btnBack.onClick.AddListener(OnClickBack);
     }
 
     private void RemoveListeners()
     {
-        btnContinue?.onClick.RemoveListener(OnClickPlay);   
+        btnContinue?.onClick.RemoveListener(OnClickPlay);
+        btnBack?.onClick.RemoveListener(OnClickBack);   
     }
 
     private void OnClickPlay()
     {
         InventoryManager.Instance.BackupInventoryBeforeMatch();
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene(DataManager.LevelPlaying + 2);
     }
 
+    private void OnClickBack()
+    {
+        gameObject.SetActive(false);
+    }
     private void OnDisable()
     {
         RemoveListeners();

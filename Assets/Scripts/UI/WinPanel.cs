@@ -20,6 +20,7 @@ public class WinPanel : MonoBehaviour
     private void onClickBackHome()
     {
         SceneManager.LoadScene("MenuScene");
+        InventoryManager.Instance.ApplyHotbarResultToInventory();
         gameObject.SetActive(false);
         if(DataManager.LevelPlayUnlocked == DataManager.LevelPlaying)
         {

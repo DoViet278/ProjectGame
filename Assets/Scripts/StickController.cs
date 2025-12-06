@@ -13,10 +13,8 @@ public class StickController : MonoBehaviour
     {
         if (isOpen)
         {
-            Debug.LogError("Open");
             if (Input.GetKeyDown(KeyCode.E))
             {
-                Debug.Log("open");
                 _animator.SetBool("open", true);
             }
         }

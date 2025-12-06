@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class LevelPlay : MonoBehaviour
 {
     [SerializeField] private Button btnLevel;
+    [SerializeField] private GameObject popupSelectItem;
     private int index;
 
     private void Awake()
@@ -43,6 +44,6 @@ public class LevelPlay : MonoBehaviour
     public void OnClickLevel()
     {
         DataManager.LevelPlaying = index + 1;
-        SceneManager.LoadScene(DataManager.LevelPlaying + 2);
+        popupSelectItem.SetActive(true);
     }
 }
