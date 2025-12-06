@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4130334451725743749}
   - component: {fileID: 2449387694275370858}
   - component: {fileID: 8246623547597536351}
+  - component: {fileID: 2672324924418033331}
   m_Layer: 0
   m_Name: Animator
   m_TagString: Untagged
@@ -123,6 +124,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ad523831ef33b94989fa2ad0749bb49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2672324924418033331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979597015168704914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c10f89260c2edf64daf79526d5465924, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDamageMaterial: {fileID: 2100000, guid: fe0c877fcdadbe5419b7cdfc2b16e185, type: 2}
+  onDamageVfxDuration: 0.15
 --- !u!1 &3132532970682399407
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,6 +554,7 @@ MonoBehaviour:
   groundCheck: {fileID: 3851676346994779231}
   primaryWallCheck: {fileID: 2984971019388350811}
   secondaryWallCheck: {fileID: 7516313924746550090}
+  losePanel: {fileID: 0}
   moveSpeed: 5
   crouchWalkSpeed: 3
   jumpForce: 7
@@ -638,9 +654,12 @@ MonoBehaviour:
   targetCollider: []
   targetCheck: {fileID: 4875233903449765663}
   targetRadius: 0.85
-  whatIsTarget:
+  whatIsEnemy:
     serializedVersion: 2
     m_Bits: 256
+  whatIsObstales:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!1 &6679661697429829217
 GameObject:
   m_ObjectHideFlags: 0

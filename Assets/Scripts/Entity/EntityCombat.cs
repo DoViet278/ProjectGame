@@ -6,7 +6,8 @@ public class EntityCombat : MonoBehaviour
 
     [SerializeField] private Transform targetCheck;
     [SerializeField] private float targetRadius = 1f;
-    [SerializeField] private LayerMask whatIsTarget;
+    [SerializeField] private LayerMask whatIsEnemy;
+    [SerializeField] private LayerMask whatIsObstales;
 
     public void Attack()
     {
@@ -15,16 +16,21 @@ public class EntityCombat : MonoBehaviour
         foreach(var collider  in targetCollider)
         {
             EntityHealth targetHealth = collider.GetComponent<EntityHealth>();
-            if(targetHealth != null)
+            Player player = collider.GetComponent<Player>();
+            if(targetHealth != null && player == null)
             {
                 targetHealth.TakeDamage(15);
+            }
+            else
+            {
+                targetHealth.TakeDamage(5);
             }
         }
     }
 
     private void GetDetectCollider()
     {
-        targetCollider = Physics2D.OverlapCircleAll(targetCheck.position, targetRadius, whatIsTarget);
+        targetCollider = Physics2D.OverlapCircleAll(targetCheck.position, targetRadius, whatIsEnemy | whatIsObstales);
     }
 
     private void OnDrawGizmos()

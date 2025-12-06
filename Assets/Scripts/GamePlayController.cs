@@ -1,52 +1,41 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GamePlayController : MonoBehaviour
 {
-    public bool endGame;
-    [SerializeField] private GameObject losePanel;
-    [SerializeField] private Button goHomeBtn;
+    public static GamePlayController Instance;
 
-    private void OnEnable()
+    public bool isInvisible = false;
+    public bool losePlay = false;
+    public bool winPlay = false;
+    private void Awake()
     {
-        AddListeners();   
-    }
-
-    
-    private void AddListeners()
-    {
-        goHomeBtn.onClick.AddListener(GoHome);
-    }
-
-    private void RemoveListener()
-    {
-        goHomeBtn.onClick.RemoveListener(GoHome);  
-    }
-
-    private void Update()
-    {
-        if (endGame)
+        if (Instance == null)
         {
-            losePanel.SetActive(true);
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-
-        if (Input.GetKeyDown(KeyCode.Alpha1)) HotbarManager.Instance.UseItem(0);
-        if (Input.GetKeyDown(KeyCode.Alpha2)) HotbarManager.Instance.UseItem(1);
-        if (Input.GetKeyDown(KeyCode.Alpha3)) HotbarManager.Instance.UseItem(2);
-        if (Input.GetKeyDown(KeyCode.Alpha4)) HotbarManager.Instance.UseItem(3);
-        if (Input.GetKeyDown(KeyCode.Alpha5)) HotbarManager.Instance.UseItem(4);
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    private void GoHome()
+    public void EnterToInvisible()
     {
-        SceneManager.LoadScene("MenuScene");
-        InventoryManager.Instance.ApplyHotbarResultToInventory();
-        InventoryManager.Instance.LoadInventory();
+        StartCoroutine(InvisibleRoutine());
+    }
+    public void SetInvisible(bool value)
+    {
+        isInvisible = value;
     }
 
-    private void OnDisable()
+    private IEnumerator InvisibleRoutine()
     {
-        RemoveListener();
+        SetInvisible(true);
+        yield return new WaitForSeconds(3f);
+        SetInvisible(false);
     }
 }

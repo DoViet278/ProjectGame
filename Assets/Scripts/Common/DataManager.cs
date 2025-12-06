@@ -13,4 +13,16 @@ public static class DataManager
         get => PrefManager.GetInt(KeyManager.KeyCoinInGame, 1000);
         set => PrefManager.SetInt(KeyManager.KeyCoinInGame, value);
     }
+
+    public static string PlayerName
+    {
+        get => PrefManager.GetString(KeyManager.KeyPlayerName, "PlayerName");
+        set => PrefManager.SetString(KeyManager.KeyPlayerName, value);  
+    }
+
+    public static int LevelPlay
+    {
+        get => PrefManager.GetInt(KeyManager.KeyLevelPlay, 1);
+        set => PrefManager.SetInt(KeyManager.KeyLevelPlay, value);  
+    }
 }

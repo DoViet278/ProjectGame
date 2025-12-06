@@ -6,7 +6,7 @@ public class HotbarManager : MonoBehaviour
     public static HotbarManager Instance;
 
     public List<ItemStack> hotbar = new List<ItemStack>();
-    public int maxSlots = 5; 
+    public int maxSlots = 3; 
 
     private void Awake()
     {

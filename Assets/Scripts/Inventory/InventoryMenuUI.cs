@@ -5,11 +5,21 @@ using TMPro;
 
 public class InventoryMenuUI : MonoBehaviour
 {
+    [SerializeField] private Button btnExit;
+    [SerializeField] private Button btnHome;
+    [SerializeField] private Button btnShop;
+    [SerializeField] private GameObject popupShop;
+    [SerializeField] private TextMeshProUGUI txtCoin;
+    [SerializeField] private TextMeshProUGUI txtName;
+
     public Image[] slots;
     public TMP_Text[] qtyTexts;
     private void OnEnable()
     {
         Render(InventoryManager.Instance.inventory);
+        txtCoin.text = $"{DataManager.CoinInGame}";
+        txtName.text = DataManager.PlayerName;
+        AddListeners();
     }
 
     void Render(List<ItemStack> items)
@@ -29,5 +39,39 @@ public class InventoryMenuUI : MonoBehaviour
                 qtyTexts[i].text = "";
             }
         }
+    }
+
+    private void AddListeners()
+    {
+        btnExit.onClick.AddListener(OnClickExit);
+        btnHome.onClick.AddListener(OnClickHome);   
+        btnShop.onClick.AddListener(OnClickShop);
+    }
+
+    private void RemoveListeners()
+    {
+        btnExit.onClick.RemoveListener(OnClickExit);
+        btnHome.onClick.RemoveListener(OnClickHome);
+        btnShop.onClick.RemoveListener(OnClickShop);
+
+    }
+    private void OnDisable()
+    {
+        RemoveListeners();
+    }
+    private void OnClickExit()
+    {
+        gameObject.SetActive(false);    
+    }
+
+    private void OnClickShop()
+    {
+        popupShop.SetActive(true);
+        gameObject.SetActive(false);
+    }
+
+    private void OnClickHome()
+    {
+        gameObject.SetActive(false);
     }
 }
