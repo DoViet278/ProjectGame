@@ -293,7 +293,7 @@ namespace Tutorial
             // Load next scene
             if (!string.IsNullOrEmpty(nextSceneName))
             {
-                SceneManager.LoadScene(nextSceneName);
+                //SceneManager.LoadScene(nextSceneName);
             }
         }
 
@@ -318,11 +318,7 @@ namespace Tutorial
         public void SkipTutorial()
         {
             StopAllCoroutines();
-            
-            if (!string.IsNullOrEmpty(nextSceneName))
-            {
-                SceneManager.LoadScene(nextSceneName);
-            }
+    
         }
 
         /// <summary>

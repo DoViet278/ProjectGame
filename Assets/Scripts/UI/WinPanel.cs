@@ -22,7 +22,9 @@ public class WinPanel : MonoBehaviour
         SceneManager.LoadScene("MenuScene");
         InventoryManager.Instance.ApplyHotbarResultToInventory();
         gameObject.SetActive(false);
-        if(DataManager.LevelPlayUnlocked == DataManager.LevelPlaying)
+        GamePlayController.Instance.winPlay = false;
+        Time.timeScale = 1f;
+        if (DataManager.LevelPlayUnlocked == DataManager.LevelPlaying)
         {
             DataManager.LevelPlayUnlocked++;
         }

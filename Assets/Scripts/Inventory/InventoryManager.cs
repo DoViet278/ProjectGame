@@ -119,7 +119,7 @@ public class InventoryManager : MonoBehaviour
         }
 
         SaveInventory(result);
-
+        inventory = result;
         HotbarManager.Instance.hotbar.Clear();
     }
 

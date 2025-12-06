@@ -14,7 +14,6 @@ public class PickupItem : MonoBehaviour
             if (picked)
             {
                 Destroy(gameObject);
-                InventoryManager.Instance.AddItem(item,1);
                 UiInventoryInGame.Instance.Refresh(HotbarManager.Instance.hotbar);
             }
             else

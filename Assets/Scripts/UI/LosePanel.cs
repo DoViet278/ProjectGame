@@ -22,12 +22,16 @@ public class LosePanel : MonoBehaviour
     {
         SceneManager.LoadScene("MainScene");
         gameObject.SetActive(false);
+        GamePlayController.Instance.losePlay = false;
+        Time.timeScale = 1f;
     }
 
     private void onClickBackHome()
     {
-        SceneManager.LoadScene("MenuScene");
         gameObject.SetActive(false);
+        GamePlayController.Instance.losePlay = false;
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MenuScene");
         InventoryManager.Instance.ApplyHotbarResultToInventory();
     }
 
