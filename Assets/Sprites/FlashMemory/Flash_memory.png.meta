@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: c6001db4f5a896966b366b1c90e65016
+guid: cce96967d4c56923692b86a51e90912c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6305150702341857163
-    second: game_ui_0
-  - first:
-      213: 8078494026692166565
-    second: game_ui_1
-  - first:
-      213: -5449877614235821332
-    second: game_ui_2
-  - first:
-      213: 1935427501021765151
-    second: game_ui_3
+      213: 3071060154321791944
+    second: Flash_memory_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -55,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -109,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: game_ui_0
+      name: Flash_memory_0
       rect:
         serializedVersion: 2
-        x: 28
-        y: 1793
-        width: 311
-        height: 207
+        x: 0
+        y: 0
+        width: 1920
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,74 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b8f146c5825608750800000000000000
-      internalID: 6305150702341857163
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: game_ui_1
-      rect:
-        serializedVersion: 2
-        x: 380
-        y: 1504
-        width: 1242
-        height: 460
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5a30a1df3839c1070800000000000000
-      internalID: 8078494026692166565
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: game_ui_2
-      rect:
-        serializedVersion: 2
-        x: 1662
-        y: 1793
-        width: 311
-        height: 207
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ceade1e3f252e54b0800000000000000
-      internalID: -5449877614235821332
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: game_ui_3
-      rect:
-        serializedVersion: 2
-        x: 474
-        y: 317
-        width: 1273
-        height: 865
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f1e9ceece050cda10800000000000000
-      internalID: 1935427501021765151
+      spriteID: 8cbe43e60f89e9a20800000000000000
+      internalID: 3071060154321791944
       vertices: []
       indices: 
       edges: []
@@ -200,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -209,11 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      game_ui_0: 6305150702341857163
-      game_ui_1: 8078494026692166565
-      game_ui_2: -5449877614235821332
-      game_ui_3: 1935427501021765151
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
