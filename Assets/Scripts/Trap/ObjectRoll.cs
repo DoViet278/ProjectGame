@@ -27,6 +27,10 @@ public class ObjectRoll : MonoBehaviour
         {
             Roll();
         }
+        if(transform.position.x + detectDistance < player.position.x)
+        {
+            SoundManager.Instance.StopLoop("stone");
+        }
     }
 
     void CheckPlayerBelow()
@@ -40,6 +44,7 @@ public class ObjectRoll : MonoBehaviour
         if (isBelow && dist <= detectDistance)
         {
             isRolling = true;
+            SoundManager.Instance.PlaySound("stone");
         }
     }
 

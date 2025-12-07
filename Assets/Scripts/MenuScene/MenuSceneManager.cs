@@ -48,6 +48,7 @@ public class MenuSceneManager : MonoBehaviour
 
     private void onClickPlay()
     {
+        SoundManager.Instance.PlaySound("click");
         if (selectLevelPopup != null)
             selectLevelPopup.SetActive(true);
     }
@@ -58,6 +59,7 @@ public class MenuSceneManager : MonoBehaviour
 
     private void onClickSetting()
     {
+        SoundManager.Instance.PlaySound("click");
         if (settingsPopup != null) 
         {
             settingsPopup.SetActive(true);

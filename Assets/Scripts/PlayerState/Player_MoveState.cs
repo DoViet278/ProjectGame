@@ -6,6 +6,12 @@ public class Player_MoveState : Player_GroundedState
     {
     }
 
+    public override void Enter()
+    {
+        base.Enter();
+        SoundManager.Instance.PlaySound("run");
+
+    }
     public override void Update()
     {
         base.Update();
@@ -16,5 +22,11 @@ public class Player_MoveState : Player_GroundedState
         }
 
         player.SetVelocity(player.moveInput.x * player.moveSpeed, rb.linearVelocity.y); 
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        SoundManager.Instance.StopLoop("run");
     }
 }

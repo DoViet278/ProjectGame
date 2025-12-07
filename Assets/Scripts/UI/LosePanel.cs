@@ -33,6 +33,7 @@ public class LosePanel : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("MenuScene");
         InventoryManager.Instance.ApplyHotbarResultToInventory();
+        AudioManager.Instance.SetMusicVolume(1f);
     }
 
     private void RemoveListeners()

@@ -9,9 +9,9 @@ public class SoundButtonHandler : MonoBehaviour, IPointerClickHandler
         
         if (AudioManager.Instance != null)
         {
-            Debug.Log($"Trước: IsSoundOn = {AudioManager.Instance.IsSoundOn}");
-            AudioManager.Instance.ToggleSound();
-            Debug.Log($"Sau: IsSoundOn = {AudioManager.Instance.IsSoundOn}");
+            //Debug.Log($"Trước: IsSoundOn = {AudioManager.Instance.IsSoundOn}");
+            //AudioManager.Instance.ToggleSound();
+            //Debug.Log($"Sau: IsSoundOn = {AudioManager.Instance.IsSoundOn}");
         }
         else
         {

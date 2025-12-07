@@ -928,10 +928,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 818161892}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &120301008
 MonoBehaviour:
@@ -2506,8 +2506,8 @@ Transform:
   m_GameObject: {fileID: 308949625}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.14, y: -7.8, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.165, y: -8.776, z: 0}
+  m_LocalScale: {x: 1.003, y: 1.146, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 110958443}
@@ -2557,7 +2557,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a42386e3524939742873a6b50cb8b565, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 0.73333335}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -6326,6 +6326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b3b819fabe022940b3703c8046eb6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 816068082}
 --- !u!58 &871222817
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -6962,10 +6963,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 747370015}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1025065584
 MonoBehaviour:
@@ -39988,10 +39989,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2014925538}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1178841558
 MonoBehaviour:
@@ -110652,7 +110653,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1160219465
   m_SortingLayer: 5
-  m_SortingOrder: 5
+  m_SortingOrder: 0
   m_Sprite: {fileID: 1902809476, guid: 0f858898d0b5c934aa3c0e5a6dc6168f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -111018,7 +111019,7 @@ Transform:
   m_GameObject: {fileID: 1920789479}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.55, y: 0, z: 0}
+  m_LocalPosition: {x: 3.76, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -111087,7 +111088,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 0
   m_Sprite: {fileID: -7341407202210888751, guid: d6110e81633a3ba47b7405042b727342, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -112040,6 +112041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b3b819fabe022940b3703c8046eb6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 816068082}
 --- !u!1 &2059209689
 GameObject:
   m_ObjectHideFlags: 0
@@ -112924,6 +112926,14 @@ PrefabInstance:
     - target: {fileID: 3851676346994779231, guid: c9b6d48e99a4e1f49a21f3e1b177ff6d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4130334451725743749, guid: c9b6d48e99a4e1f49a21f3e1b177ff6d, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4130334451725743749, guid: c9b6d48e99a4e1f49a21f3e1b177ff6d, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1637354589
       objectReference: {fileID: 0}
     - target: {fileID: 4629040057012597359, guid: c9b6d48e99a4e1f49a21f3e1b177ff6d, type: 3}
       propertyPath: losePanel

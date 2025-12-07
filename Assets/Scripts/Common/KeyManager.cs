@@ -11,4 +11,6 @@ public static class KeyManager
     public const string KeyLevelPlayUnlocked = "key_level_play_unlocked";
 
     public const string KeyLevelPlaying = "key_level_playing";
+
+    public const string KeySoundEnable = "key_sound_enable";
 }

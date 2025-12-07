@@ -30,6 +30,7 @@ public class WinPanel : MonoBehaviour
         gameObject.SetActive(false);
         GamePlayController.Instance.winPlay = false;
         DataManager.CoinInGame += 500;
+        AudioManager.Instance.SetMusicVolume(1f);
         foreach (ItemData item in rewardItem)
         {
             InventoryManager.Instance.AddItem(item);

@@ -44,6 +44,7 @@ public class SelectItemPopup : MonoBehaviour
             HotbarManager.Instance.AddItemToHotbar(stack.item, 1);
         }
         InventoryManager.Instance.BackupInventoryBeforeMatch();
+        AudioManager.Instance.SetMusicVolume(0.5f);
         SceneManager.LoadScene(DataManager.LevelPlaying + 2);
     }
 

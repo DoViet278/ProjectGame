@@ -9,7 +9,7 @@ public class Player_JumpState : Player_AirState
     override public void Enter()
     {
         base.Enter();
-
+        SoundManager.Instance.PlaySound("jump");
         player.SetVelocity(rb.linearVelocity.x,player.jumpForce);
     }
 

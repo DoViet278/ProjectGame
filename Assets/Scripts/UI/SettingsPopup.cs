@@ -84,12 +84,9 @@ public class SettingsPopup : MonoBehaviour
 
     private void OnSoundClick()
     {
-        Debug.Log("!!! OnSoundClick() CALLED !!!");
-        if (AudioManager.Instance != null)
+        if (SoundManager.Instance != null)
         {
-            Debug.Log($"Before toggle: IsSoundOn = {AudioManager.Instance.IsSoundOn}");
-            AudioManager.Instance.ToggleSound();
-            Debug.Log($"After toggle: IsSoundOn = {AudioManager.Instance.IsSoundOn}");
+            SoundManager.Instance.ToogleSound();
             UpdateUI();
         }
         else
@@ -114,8 +111,6 @@ public class SettingsPopup : MonoBehaviour
         }
         
         bool isMusicOn = AudioManager.Instance.IsMusicOn;
-        bool isSoundOn = AudioManager.Instance.IsSoundOn;
-
         if (musicIcon != null)
         {
             if (musicOnSprite != null && musicOffSprite != null)
@@ -127,13 +122,12 @@ public class SettingsPopup : MonoBehaviour
         if (soundIcon != null)
         {
             if (soundOnSprite != null && soundOffSprite != null)
-                soundIcon.sprite = isSoundOn ? soundOnSprite : soundOffSprite;
-            
-            soundIcon.color = isSoundOn ? Color.white : Color.gray;
+                soundIcon.sprite = SoundManager.Instance.IsSoundOn ? soundOnSprite : soundOffSprite;
+
+            soundIcon.color = SoundManager.Instance.IsSoundOn? Color.white : Color.gray;
         }
     }
     
-    // Music Dropdown Methods
     private void PopulateMusicDropdown()
     {
         if (musicDropdown == null || AudioManager.Instance == null) return;
