@@ -12,28 +12,15 @@ public class SplashScene : MonoBehaviour
     [SerializeField] private float fadeOutDuration = 0.5f;
 
     [Header("UI Elements")]
-    [SerializeField] private Image loadingBar;
-    [SerializeField] private Image loadingBarGlow;
-    [SerializeField] private Transform personTransform;
-    [SerializeField] private Transform startTransform;
-    [SerializeField] private Transform endTransform;
-    [SerializeField] private TextMeshProUGUI loadingText;
-    [SerializeField] private TextMeshProUGUI percentageText;
-    [SerializeField] private Image loadingIcon;
+    [SerializeField] private Image loadingBar;          // Thanh loading (Image Type: Filled)
+    [SerializeField] private TextMeshProUGUI percentText; // Text hiển thị "Loading XX%"
     [SerializeField] private CanvasGroup canvasGroup;
-    [SerializeField] private Image logoImage;
 
     [Header("Animation Settings")]
-    [SerializeField] private float iconRotationSpeed = 200f;
-    [SerializeField] private float dotAnimationSpeed = 0.5f;
     [SerializeField] private float glowPulseSpeed = 2f;
-    [SerializeField] private float glowMinAlpha = 0.3f;
-    [SerializeField] private float glowMaxAlpha = 0.8f;
+    [SerializeField] private Color glowColor = new Color(0.3f, 0.9f, 1f, 1f); // Cyan glow
 
     private float elapsedTime = 0f;
-    private string baseLoadingText = "Đang tải";
-    private int dotCount = 0;
-    private float dotTimer = 0f;
 
     private void Awake()
     {
@@ -63,58 +50,33 @@ public class SplashScene : MonoBehaviour
 
     private void Start()
     {
-        if (personTransform != null && startTransform != null)
-        {
-            personTransform.position = startTransform.position;
-        }
-
         StartCoroutine(LoadingSequence());
     }
 
     private void Update()
     {
-        // Rotate loading icon
-        if (loadingIcon != null)
+        // Pulse glow effect on loading bar
+        if (loadingBar != null)
         {
-            loadingIcon.transform.Rotate(0f, 0f, -iconRotationSpeed * Time.deltaTime);
-        }
-
-        // Animate loading text dots
-        if (loadingText != null)
-        {
-            dotTimer += Time.deltaTime;
-            if (dotTimer >= dotAnimationSpeed)
-            {
-                dotTimer = 0f;
-                dotCount = (dotCount + 1) % 4;
-                string dots = new string('.', dotCount);
-                loadingText.text = baseLoadingText + dots;
-            }
-        }
-
-        // Pulse glow effect
-        if (loadingBarGlow != null)
-        {
-            float alpha = Mathf.Lerp(glowMinAlpha, glowMaxAlpha, 
-                (Mathf.Sin(Time.time * glowPulseSpeed) + 1f) / 2f);
-            Color glowColor = loadingBarGlow.color;
-            glowColor.a = alpha;
-            loadingBarGlow.color = glowColor;
+            float pulse = (Mathf.Sin(Time.time * glowPulseSpeed) + 1f) / 2f;
+            Color barColor = glowColor;
+            barColor.a = Mathf.Lerp(0.8f, 1f, pulse);
+            loadingBar.color = barColor;
         }
     }
 
     private IEnumerator LoadingSequence()
     {
-        // Fade in
-        yield return StartCoroutine(FadeIn());
+        // Hiển thị ngay lập tức (không fade)
+        if (canvasGroup != null)
+        {
+            canvasGroup.alpha = 1f;
+        }
 
         // Loading progress
         yield return StartCoroutine(LoadAsynchronously());
 
-        // Fade out
-        yield return StartCoroutine(FadeOut());
-
-        // Go to next scene
+        // Go to next scene (không fade out)
         GotoScene();
     }
 
@@ -144,35 +106,17 @@ public class SplashScene : MonoBehaviour
             elapsedTime += Time.deltaTime;
             float progress = Mathf.Clamp01(elapsedTime / timeToLoad);
 
-            // Update loading bar
+            // Update loading bar fill
             if (loadingBar != null)
             {
                 loadingBar.fillAmount = progress;
             }
 
-            // Update glow bar (slightly ahead for effect)
-            if (loadingBarGlow != null)
+            // Update percentage text "Loading XX%"
+            if (percentText != null)
             {
-                loadingBarGlow.fillAmount = Mathf.Clamp01(progress + 0.1f);
-            }
-
-            // Update person position
-            if (personTransform != null && startTransform != null && endTransform != null)
-            {
-                personTransform.position = Vector3.Lerp(startTransform.position, endTransform.position, progress);
-            }
-
-            // Update percentage text
-            if (percentageText != null)
-            {
-                percentageText.text = Mathf.RoundToInt(progress * 100f) + "%";
-            }
-
-            // Scale logo slightly for breathing effect
-            if (logoImage != null)
-            {
-                float scale = 1f + Mathf.Sin(Time.time * 2f) * 0.05f;
-                logoImage.transform.localScale = Vector3.one * scale;
+                int percent = Mathf.RoundToInt(progress * 100f);
+                percentText.text = "Loading " + percent + "%";
             }
 
             yield return null;
@@ -180,9 +124,7 @@ public class SplashScene : MonoBehaviour
 
         // Ensure everything is at 100%
         if (loadingBar != null) loadingBar.fillAmount = 1f;
-        if (loadingBarGlow != null) loadingBarGlow.fillAmount = 1f;
-        if (percentageText != null) percentageText.text = "100%";
-        if (loadingText != null) loadingText.text = "Hoàn thành!";
+        if (percentText != null) percentText.text = "Loading 100%";
     }
 
     private IEnumerator FadeOut()
