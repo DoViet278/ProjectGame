@@ -34,7 +34,7 @@ public class FlashMemoryGame : MonoBehaviour
     
     [Header("=== SETTINGS ===")]
     public float showTime = 2f;           // How long to show sequence
-    public int winsNeeded = 3;            // Correct answers to win
+    public int maxAttempts = 3;           // Max wrong attempts before new sequence
     public string exitScene = "Menu";     // Scene to load when done
     
     [Header("=== FADE (Optional) ===")]
@@ -43,8 +43,8 @@ public class FlashMemoryGame : MonoBehaviour
     // Private state
     string answer = "";      // The correct sequence
     string input = "";       // What player typed
-    int correctCount = 0;    // How many correct so far
     int score = 0;
+    int wrongAttempts = 0;   // Wrong attempts on current sequence
     bool waitingForInput = false;
     
     void Start()
@@ -54,8 +54,8 @@ public class FlashMemoryGame : MonoBehaviour
         // Hide everything, show start button
         if (displayText) displayText.text = "";
         if (instructionText) instructionText.text = "Press START!";
-        if (progressText) progressText.text = "0/" + winsNeeded;
-        if (scoreText) scoreText.text = "Score: 0";
+        if (progressText) progressText.text = "";
+        if (scoreText) scoreText.text = "";
         
         // Setup button listeners
         SetupButtons();
@@ -128,9 +128,8 @@ public class FlashMemoryGame : MonoBehaviour
         if (descriptionText) descriptionText.gameObject.SetActive(false);
         
         // Reset game
-        correctCount = 0;
+        wrongAttempts = 0;
         score = 0;
-        UpdateUI();
         
         // Start first round
         StartCoroutine(PlayRound());
@@ -176,31 +175,40 @@ public class FlashMemoryGame : MonoBehaviour
         
         if (input == answer)
         {
-            // CORRECT!
-            correctCount++;
+            // CORRECT! WIN immediately!
             score += 100;
-            UpdateUI();
             
-            if (instructionText) instructionText.text = "CORRECT!";
+            if (instructionText) instructionText.text = "CORRECT! YOU WIN!";
             if (displayText) displayText.color = Color.green;
+            if (scoreText) scoreText.text = "Score: " + score;
             
-            if (correctCount >= winsNeeded)
-            {
-                // WIN!
-                StartCoroutine(WinSequence());
-            }
-            else
-            {
-                StartCoroutine(NextRoundDelay(1f));
-            }
+            // Start win sequence
+            StartCoroutine(WinSequence());
         }
         else
         {
-            // WRONG - just continue
-            if (instructionText) instructionText.text = "Wrong! Try again!";
-            if (displayText) displayText.color = Color.red;
+            // WRONG
+            wrongAttempts++;
             
-            StartCoroutine(NextRoundDelay(1f));
+            if (wrongAttempts >= maxAttempts)
+            {
+                // Too many wrong attempts, new sequence
+                if (instructionText) instructionText.text = $"Wrong {maxAttempts}x! New sequence...";
+                if (displayText) displayText.color = Color.red;
+                
+                wrongAttempts = 0;
+                StartCoroutine(NextRoundDelay(1.5f));
+            }
+            else
+            {
+                // Can try again
+                int remaining = maxAttempts - wrongAttempts;
+                if (instructionText) instructionText.text = $"Wrong! {remaining} tries left";
+                if (displayText) displayText.color = Color.red;
+                
+                // Retry same sequence
+                StartCoroutine(RetrySequence());
+            }
         }
     }
     
@@ -210,6 +218,7 @@ public class FlashMemoryGame : MonoBehaviour
     {
         waitingForInput = false;
         input = "";
+        wrongAttempts = 0;  // Reset attempts for new sequence
         
         // Reset text color
         if (displayText) displayText.color = Color.white;
@@ -221,6 +230,9 @@ public class FlashMemoryGame : MonoBehaviour
             sb.Append(Random.Range(0, 10));
         answer = sb.ToString();
         
+        // Show attempts
+        if (progressText) progressText.text = $"Attempts: 0/{maxAttempts}";
+        
         // Show sequence
         if (instructionText) instructionText.text = "Remember!";
         if (displayText) displayText.text = answer;
@@ -229,6 +241,32 @@ public class FlashMemoryGame : MonoBehaviour
         
         // Hide sequence, enable input
         if (instructionText) instructionText.text = "Enter the sequence!";
+        ShowInput();
+        
+        SetInputEnabled(true);
+        waitingForInput = true;
+    }
+    
+    IEnumerator RetrySequence()
+    {
+        // Short delay then show same sequence again
+        yield return new WaitForSeconds(1f);
+        
+        // Reset display
+        if (displayText) displayText.color = Color.white;
+        input = "";
+        
+        // Update attempts display
+        if (progressText) progressText.text = $"Attempts: {wrongAttempts}/{maxAttempts}";
+        
+        // Show sequence again
+        if (instructionText) instructionText.text = "Remember!";
+        if (displayText) displayText.text = answer;
+        
+        yield return new WaitForSeconds(showTime);
+        
+        // Hide and enable input
+        if (instructionText) instructionText.text = "Try again!";
         ShowInput();
         
         SetInputEnabled(true);
@@ -286,9 +324,4 @@ public class FlashMemoryGame : MonoBehaviour
         displayText.text = s;
     }
     
-    void UpdateUI()
-    {
-        if (scoreText) scoreText.text = "Score: " + score;
-        if (progressText) progressText.text = correctCount + "/" + winsNeeded;
-    }
 }
