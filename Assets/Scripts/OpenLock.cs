@@ -16,10 +16,11 @@ public class OpenLock : MonoBehaviour
         if (isOpen)
         {
             if (Input.GetKeyDown(KeyCode.E))
-
-                _animator.SetBool("open", true);
-            stair.SetActive(true);
-            goback.SetActive(true);
+            {
+                _animator.SetBool("unlock", true);
+                stair.SetActive(true);
+                goback.SetActive(true);
+            }
         }
     }
 

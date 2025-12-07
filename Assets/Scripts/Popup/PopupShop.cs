@@ -12,12 +12,15 @@ public class PopupShop : MonoBehaviour
 
     private void OnEnable()
     {
-        txtCoin.text = $"{DataManager.CoinInGame}";
-        txtName.text = DataManager.PlayerName;
 
         AddListeners();
     }
 
+    private void Update()
+    {
+        txtName.text = DataManager.PlayerName;
+        txtCoin.text = $"{DataManager.CoinInGame}";
+    }
     private void AddListeners()
     {
         btnHome.onClick.AddListener(OnClickHome);

@@ -17,11 +17,14 @@ public class InventoryMenuUI : MonoBehaviour
     private void OnEnable()
     {
         Render(InventoryManager.Instance.inventory);
-        txtCoin.text = $"{DataManager.CoinInGame}";
-        txtName.text = DataManager.PlayerName;
         AddListeners();
     }
 
+    private void Update()
+    {
+        txtCoin.text = $"{DataManager.CoinInGame}";
+        txtName.text = DataManager.PlayerName;
+    }
     void Render(List<ItemStack> items)
     {
         for (int i = 0; i < slots.Length; i++)

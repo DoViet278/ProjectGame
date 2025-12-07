@@ -90,7 +90,14 @@ public class InventoryManager : MonoBehaviour
 
         foreach (var stack in inventory)
         {
-            preMatchInventoryBackup.Add(new ItemStack(stack.item, stack.quantity));
+            if(stack.quantity > 0)
+            {
+                preMatchInventoryBackup.Add(new ItemStack(stack.item, stack.quantity));
+            }
+            else
+            {
+                continue;
+            }
         }
     }
 

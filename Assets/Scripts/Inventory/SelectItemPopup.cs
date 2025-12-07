@@ -38,13 +38,12 @@ public class SelectItemPopup : MonoBehaviour
 
     private void OnClickPlay()
     {
+        HotbarManager.Instance.hotbar.Clear();
         foreach (var stack in GetSelectedItems())
         {
             HotbarManager.Instance.AddItemToHotbar(stack.item, 1);
-            InventoryManager.Instance.RemoveItem(stack.item, 1);
         }
         InventoryManager.Instance.BackupInventoryBeforeMatch();
-        HotbarManager.Instance.hotbar.Clear();
         SceneManager.LoadScene(DataManager.LevelPlaying + 2);
     }
 
@@ -92,7 +91,7 @@ public class SelectItemPopup : MonoBehaviour
             if (!slot.isUsed)
             {
                 slot.SetItem(stack.item); 
-                stack.quantity--;
+                InventoryManager.Instance.RemoveItem(stack.item, 1);
                 qtyText.text = stack.quantity.ToString();
                 return;
             }
@@ -113,6 +112,7 @@ public class SelectItemPopup : MonoBehaviour
 
         foreach (var slot in slots)
         {
+
             if (slot.isUsed)
                 result.Add(new ItemStack(slot.item, 1)); 
         }
